@@ -1,1 +1,65 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+// TokenManagement contract implements a basic token management system with minting, transferring, and burning functionality.
+contract TokenManagement {
+    // The address of the contract owner.
+    address private owner;
+    uint256 public totalTokens;
+
+    // Mapping to track balances of addresses.
+    mapping(address => uint256) private balances;
+
+    // Events for tracking token transfers, destruction, and creation.
+    event TokensTransferred(address indexed from, address indexed to, uint256 amount);
+    event TokensBurned(address indexed burner, uint256 amount);
+    event TokensMinted(address indexed minter, uint256 amount);
+
+    // Modifier to restrict certain actions to the contract owner.
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not the contract owner");
+        _;
+    }
+
+    // Constructor initializes the contract owner.
+    constructor() {
+        owner = msg.sender;
+    }
+
+    // Mints new tokens and assigns them to a specified address.
+    function mintTokens(address _receiver, uint256 _amount) public onlyOwner {
+        require(_receiver != address(0), "Invalid address");
+
+        balances[_receiver] += _amount;
+        totalTokens += _amount;
+
+        emit TokensMinted(_receiver, _amount);
+    }
+
+    // Transfers tokens from the sender's balance to a specified address.
+    function transferTokens(address _to, uint256 _amount) public {
+        require(_to != address(0), "Invalid address");
+        require(balances[msg.sender] >= _amount, "Insufficient balance");
+
+        balances[msg.sender] -= _amount;
+        balances[_to] += _amount;
+
+        emit TokensTransferred(msg.sender, _to, _amount);
+    }
+
+    // Burns a specified amount of tokens from the sender's balance.
+    function burnTokens(uint256 _amount) public {
+        require(balances[msg.sender] >= _amount, "Insufficient balance");
+
+        balances[msg.sender] -= _amount;
+        totalTokens -= _amount;
+
+        emit TokensBurned(msg.sender, _amount);
+    }
+
+    // Retrieves the token balance of a specified account.
+    function getTokenBalance(address _account) public view returns (uint256) {
+        return balances[_account];
+    }
+}
 
