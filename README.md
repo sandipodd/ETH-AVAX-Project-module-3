@@ -14,7 +14,7 @@ This Ethereum smart contract, written in Solidity, provides a simple token syste
 
 ## License
 
-This project is licensed under the [LICENCE].
+This project is licensed under the [https://github.com/sandipodd/ETH-AVAX-Project-module-3/blob/main/LICENCE].
 
 
 
