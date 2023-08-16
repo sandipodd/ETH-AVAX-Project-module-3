@@ -14,7 +14,7 @@ This Ethereum smart contract, written in Solidity, provides a simple token syste
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [LICENCE].
 
 
 
