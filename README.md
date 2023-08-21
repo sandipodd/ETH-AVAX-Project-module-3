@@ -47,4 +47,4 @@ Retrieve the token balance of a specified account.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the MIT License. [https://github.com/sandipodd/ETH-AVAX-Project-module-3/blob/139c2f6ff84bdae612cae92a8d2bf7b2e3f33c92/LICENCE]
